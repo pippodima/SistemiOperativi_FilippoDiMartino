@@ -1,6 +1,7 @@
 public class AcquisitionThread extends Thread {
     float[] avgs;
-    int avgInserite = 0;
+    int index = 0;
+    int avgInserite=0;
     ValueManager manager;
     SensorThread[] sensorThreads;
     int nSensori;
@@ -11,7 +12,7 @@ public class AcquisitionThread extends Thread {
         this.avgs = new float[nSensori];
         this.sensorThreads = new SensorThread[nSensori];
         for (int i = 0; i < nSensori; i++) {
-            sensorThreads[i] = new SensorThread(i, 100, k);
+            sensorThreads[i] = new SensorThread(i, 200, k);
             sensorThreads[i].start();
         }
         System.out.println("Finito il costruttore di Aq");
@@ -21,10 +22,11 @@ public class AcquisitionThread extends Thread {
     public void run() {
         try {
             while (true) {
-                System.out.println("Aq richiesta n." + avgInserite); //Ho tolto il for perchè non entrava nel metodo,  usando avg inserite come counter e come indice della posizione corrente
-                avgs[avgInserite] = sensorThreads[avgInserite].queue.getAvg();
+                //System.out.println("Aq richiesta n." + avgInserite); //Ho tolto il for perchè non entrava nel metodo,  usando avg inserite come counter e come indice della posizione corrente
+                avgs[index] = sensorThreads[index].queue.getAvg();
                 manager.set(avgs);
-                avgInserite=(avgInserite+1)%nSensori;
+                index =(index +1)%nSensori;
+                avgInserite++;
             }
         } catch (InterruptedException e) {
             System.out.println("Procedo con l'interruzione");
