@@ -2,9 +2,9 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello world!");
 
-        int nSensori = 10;
-        int mProcessor = 3;
-        int k = 12;
+        int nSensori = 50;
+        int mProcessor = 5;
+        int k = 20;
         ValueManager manager = new ValueManager(nSensori,mProcessor);
 
         AcquisitionThread aq = new AcquisitionThread(nSensori,k,manager);

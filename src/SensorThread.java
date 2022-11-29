@@ -9,6 +9,7 @@ public class SensorThread extends Thread {
         this.attesa = x;
         this.value = id * 1000;
         this.queue = new MovingAvgQueue(id, k);
+        System.out.println("Creato Sensore N." + id);
     }
 
     @Override

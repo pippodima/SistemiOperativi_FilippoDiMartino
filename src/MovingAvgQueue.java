@@ -8,6 +8,7 @@ public class MovingAvgQueue {
     MovingAvgQueue(int id, int k){
         this.id=id;
         this.k=k;
+        System.out.println("Creata queue con id:" + id);
     }
 
     public synchronized void add(float value){
@@ -21,6 +22,7 @@ public class MovingAvgQueue {
         for (int i = 0; i < k; i++) avg+=values.get(i);
         avg=avg/k;
         values.remove(0);
+        notifyAll();
         return avg;
     }
 }
