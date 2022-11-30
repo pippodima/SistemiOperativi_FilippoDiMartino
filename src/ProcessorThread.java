@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ProcessorThread extends Thread {
     int id;
     int count = 0;
@@ -9,6 +11,7 @@ public class ProcessorThread extends Thread {
         this.id = id;
         this.myavg = new float[nSensori];
         this.manager=manager;
+        this.nSensori=nSensori;
     }
 
     @Override
@@ -16,13 +19,13 @@ public class ProcessorThread extends Thread {
         try {
             while (true){
                 myavg = manager.get(id);
-                System.out.println("ProcessorThread: " + id + ":");
-                for (int i = 0; i < nSensori; i++) System.out.print(myavg[i] + " ");
+                System.out.print("ProcessorThread " + id + ": " + Arrays.toString(myavg));
+                System.out.println();
                 sleep((int) ((Math.random()*2000)+1000));
                 count++;
             }
         } catch (InterruptedException e) {
-            System.out.println("Processor thread interrotto");
+            //System.out.println("Processor thread interrotto");
         }
     }
 }

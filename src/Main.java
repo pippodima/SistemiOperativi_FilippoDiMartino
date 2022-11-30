@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello world!");
 
-        int nSensori = 10;
+        int nSensori = 5;
         int mProcessor = 5;
         int k = 5;
         ValueManager manager = new ValueManager(nSensori,mProcessor);
@@ -16,7 +16,6 @@ public class Main {
             processors[i].start();
         }
 
-
         Thread.sleep(10000);
 
         aq.interrupt();
@@ -26,7 +25,7 @@ public class Main {
         for (int i = 0; i < mProcessor; i++) {
             processors[i].interrupt();
             processors[i].join();
-            System.out.println("ProcessorThread " + i + " richieste fatte -> " + processors[i].count);
+            System.out.println("ProcessorThread " + i + " richieste fatte -> " + (processors[i].count+1));
         }
     }
 }
