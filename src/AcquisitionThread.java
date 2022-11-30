@@ -11,7 +11,7 @@ public class AcquisitionThread extends Thread {
         this.avgs = new float[nSensori];
         this.sensorThreads = new SensorThread[nSensori];
         for (int i = 0; i < nSensori; i++) {
-            sensorThreads[i] = new SensorThread(i, 100, k);         //inizializzazione dei sensorThread
+            sensorThreads[i] = new SensorThread(i, 100, k);  //inizializzazione dei sensorThread
             sensorThreads[i].start();
         }
         System.out.println("Finito il costruttore di Aq");
