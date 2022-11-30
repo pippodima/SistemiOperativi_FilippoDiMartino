@@ -13,8 +13,12 @@ public class ValueManager {
     }
 
     public synchronized void set(float[] avgs) throws InterruptedException {
-        while(setcount!=count)wait();
+        while(setcount!=count)wait();       //ho aggiunto una funzione che controlla se la funzione get() è stata fatta perchè senza questa condizione poteva capitare che i processor si scambiavano
+
+        //c'è un bug che non permette al programma di far skippare ai processor l'array generato, prendendo quello del ciclo successivo
+        // con l'aggiunta di Thread.sleep() questo bug accade solo al primo ciclo invece che randomicamente
         Thread.sleep(10);
+
         this.avgs = avgs;
         count = (count + 1) % nProcessor;
         notifyAll();

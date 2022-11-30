@@ -18,14 +18,14 @@ public class ProcessorThread extends Thread {
     public void run() {
         try {
             while (true){
-                myavg = manager.get(id);
+                myavg = manager.get(id);  //ogni processor fa richiesta al manager di ricevere la sua media di valori, entrando in coda fino a che non arriva il suo turno
                 System.out.print("ProcessorThread " + id + ": " + Arrays.toString(myavg));
                 System.out.println();
                 sleep((int) ((Math.random()*2000)+1000));
                 count++;
             }
         } catch (InterruptedException e) {
-            //System.out.println("Processor thread interrotto");
+            System.out.print("Processor "+ id +" interrotto -> ");
         }
     }
 }

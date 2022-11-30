@@ -9,19 +9,19 @@ public class SensorThread extends Thread {
         this.attesa = x;
         this.value = id * 1000;
         this.queue = new MovingAvgQueue(id, k);
-        //System.out.println("Creato Sensore N." + id);
+        System.out.println(" Creato Sensore N." + id);
     }
 
     @Override
     public void run() {
         try {
             while (true) {
-                queue.add(value);
+                queue.add(value);   //aggiunta delle misurazioni alla coda
                 value++;
                 sleep(attesa);
             }
         } catch (InterruptedException e) {
-            //System.out.println("Sensor Interrotto");
+            System.out.print("Sensor " + id + " Interrotto ->");
         }
     }
 }
